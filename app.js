@@ -4,11 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var mongoose = require('mongoose');
+var randomString = require('randomstring');
+var schema = mongoose.Schema;
 
 var app = express();
+
+mongoose.connect("mongodb://localhost:27017/agile", function (err) {
+    if(err){
+        console.log("MongoDB Error");
+        throw err;
+    }
+});
+
+//requiring vars
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

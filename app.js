@@ -10,6 +10,16 @@ var schema = mongoose.Schema;
 
 var app = express();
 
+var UserSchema = new schema({
+    _id : String,
+    name : String,
+    profile : String,
+    password : String,
+    email : String,
+    gender : String
+});
+
+var User = mongoose.model('users', UserSchema);
 mongoose.connect("mongodb://localhost:27017/agile", function (err) {
     if(err){
         console.log("MongoDB Error");

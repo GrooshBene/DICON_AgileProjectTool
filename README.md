@@ -98,4 +98,200 @@ String, 유저가 귀속된 프로젝트의 고유 번호입니다.
 ### profile
 String, 유저의 프로필 사진에 대한 경로입니다.
 
+API 레퍼런스
+====
 
+오류 처리
+-----
+오류가 발생했는지는 반환되는 HTTP상태코드를 이용하여 확인할 수 있습니다.
+
+- 200 - 성공적으로 처리함
+- 400 - 입력받은 데이터가 유효하지 않음
+- 401 - Access Denied
+- 500 - 내부 서버 오류
+
+로그인
+----
+
+### /auth/facebook - GET
+Passport-Facebook Strategy를 이용하여 페이스북 계정을 통해 로그인합니다.
+
+자세한 것은 [fb 로그인 API](https://github.com/drudge/passport-facebook)를 참조해 주세요.
+
+### /auth/local/login - POST
+로컬 데이터베이스를 이용하여 로그인합니다.
+
+#### 입력
+- email - 사용자의 회원가입 시 입력했던 이메일 주소입니다.
+- password - 사용자의 회원가입 시 입력했던 비밀번호입니다.
+
+#### 출력
+
+##### 로그인 성공
+HTTP Status 200
+
+##### 로그인 실패
+- 회원정보가 유효하지 않음 - 401
+- 내부 서버 오류 - 500
+
+### /auth/local/signin - POST
+로컬 데이터베이스를 이용하여 회원가입합니다.
+
+#### 입력
+- email - 사용자의 로그인에 사용할 이메일 주소입니다.
+- password - 사용자의 로그인에 사용할 비밀번호입니다.
+- name - 사용자의 이름입니다.
+
+#### 출력
+
+##### 로그인 성공
+HTTP Status 200
+
+##### 로그인 실패
+- 회원정보가 유효하지 않음 - 401
+- 내부 서버 오류 - 500
+
+
+프로젝트
+----
+
+### /project/list - GET
+현재 속해있는 프로젝트 리스트를 모두 가져옵니다.
+
+#### 입력
+- _id - 세션에 저장되어 있는 사용자의 아이디 정보입니다.
+
+#### 출력
+
+#### 조회 성공
+HTTP Status 200, Project Id Array of User
+
+#### 조회 실패
+HTTP Status 401
+
+### /project/add - GET
+새 프로젝트를 생성합니다.
+
+#### 입력
+- name - 프로젝트의 이름입니다.
+
+#### 출력
+
+##### 생성 성공
+HTTP Status 200
+
+##### 생성 실패
+- 권한 없음 - HTTP Status 401
+- 내부 DB 에러 - HTTP Status 500
+
+### /project/profile/edit - POST
+프로젝트에 해당하는 유저스키마인 ProjectUser Schema의 정보를 수정합니다.
+
+#### 입력
+- _id - 세션에 저장되어 있는 사용자의 아이디 정보입니다.
+- name - 사용자의 이름입니다.
+- profile - 사용자의 프로필 사진입니다. req.file 프로토콜을 이용하여 입력받습니다.
+
+#### 출력
+
+##### 업데이트 성공
+HTTP Status 200, Update Result
+
+##### 업데이트 실패
+- 권한 없음 - HTTP Status 401
+- 입력 받은 값이 유효하지 않음 - HTTP Status 400
+- 내부 DB 에러 - HTTP Status 500
+
+### /project/invite - POST
+
+프로젝트에 유저를 초대하는 링크를 발급받습니다.
+
+#### 입력
+별다른 입력은 받지 않습니다.
+
+#### 출력
+
+##### 발급 성공
+HTTP Status 200, Invitation Link
+
+##### 발급 실패
+- 내부 DB 에러 - HTTP Status 500
+- 권한 없음 - HTTP Status 401
+
+### /project/join - POST
+
+프로젝트 초대 링크를 통해 참여합니다.
+
+#### 입력
+- link - 프로젝트 초대 링크 URL 전문입니다.
+
+#### 출력
+
+##### 발급 성공
+HTTP Status 200, ProjectUser Schema
+
+##### 발급 실패
+- URL이 유효하지 않음 - HTTP Status 400
+- 내부 DB 에러 - HTTP Status 500
+- 권한 없음 - HTTP Status 401
+
+채팅
+-----
+### /chat - GET
+
+프로젝트 내의 채팅방에 참가합니다.
+
+#### 입력
+- id - 프로젝트의 고유 식별번호입니다.
+- room - 방의 종류입니다. 종류는 기본적으로 다음과 같이 구성되어 있습니다. 각 방에 맞는 영어 명칭을 생각해주시기 바랍니다.
+	1. 공지사항
+	2. 기획
+	3. 디자인
+	4. 개발
+	5. github log
+
+#### 출력
+
+##### 접속 성공
+소켓으로 연결됩니다.
+
+##### 접속 실패
+- 권한 없음 - HTTP Status 401
+- 방이 존재하지 않음 - HTTP Status 400
+- 프로젝트가 존재하지 않음 - HTTP Status 400
+- 내부 서버 에러 - HTTP Status 500
+
+### /chat/user - GET
+프로젝트 내의 유저와 1대1 채팅을 합니다.
+
+#### 입력
+- id - 프로젝트의 고유 식별번호입니다.
+- user_id - 프로젝트에 속해있는 유저의 고유 식별번호입니다.
+
+#### 출력
+
+##### 접속 성공
+소켓으로 연결됩니다.
+
+##### 접속 실패
+- 권한 없음 - HTTP Status 401
+- 유저가 존재하지 않음 - HTTP Status 400
+- 프로젝트가 존재하지 않음 - HTTP Status 400
+- 내부 서버 에러 - HTTP Status 500
+
+### /chat/find - GET
+채팅 내에서 키워드에 따라 검색합니다.
+
+#### 입력
+- id - 프로젝트의 고유 식별번호입니다.
+- keyword - 프로젝트에서 검색할 키워드입니다.
+
+#### 출력
+
+##### 검색 성공
+Search Result Object
+
+##### 검색 실패
+- 권한 없음 - HTTP Status 401
+- 프로젝트가 존재하지 않음 - HTTP Status 400
+- 내부 서버 에러 - HTTP Status 500

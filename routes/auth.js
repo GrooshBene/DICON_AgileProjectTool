@@ -82,7 +82,7 @@ function init(app, User, randomString) {
                 }
                 else if(req.param('email')!= undefined && result.password == req.param('password')){
                     console.log("User " + result.name + "Logged In");
-                    req.session.user_id = result._id;
+                    req.session._id = result._id;
                     res.send(200, sign);
                 }
                 else if(result.password != req.param('password')){
@@ -125,6 +125,19 @@ function init(app, User, randomString) {
                         res.send(200, response);
                     }
                 })
+            }
+        })
+    });
+
+    app.post('/user/info', function (req, res) {
+        User.findOne({_id : req.session._id}).exec(function (err, result) {
+            if(err){
+                console.log('/user/info DB Error!');
+                throw err;
+            }
+            else{
+                console.log("User Founded : "+ result);
+                res.send(200, result);
             }
         })
     })

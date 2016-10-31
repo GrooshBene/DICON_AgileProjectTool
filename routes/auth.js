@@ -3,7 +3,7 @@
  */
 
 module.exports = init;
-function init(app, User) {
+function init(app, User, randomString) {
     var passport = require('passport');
 
     app.use(passport.initialize());
@@ -96,5 +96,37 @@ function init(app, User) {
             }
         });
     });
+
+    app.post('/auth/local/signin', function (req, res) {
+        var user = new User({
+            _id : randomString.generate(13),
+            name : req.param('name'),
+            email : req.param('email'),
+            password : req.param('password'),
+            projects : []
+        });
+        User.find({phone : req.param('phone')}).exec(function (err, result) {
+            if(err){
+                console.log('/auth/local/signin DB Error');
+                throw err;
+            }
+            if(result.length != 0){
+                console.log("User Data Exists!");
+                res.send(401, "User Data Exists!");
+            }
+            else if(result.length == 0){
+                user.save(function (err) {
+                    if(err){
+                        console.log("/auth/signin Failed");
+                        throw err;
+                    }
+                    else {
+                        console.log("user register : " + user);
+                        res.send(200, response);
+                    }
+                })
+            }
+        })
+    })
     //function end
 }

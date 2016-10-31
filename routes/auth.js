@@ -61,5 +61,40 @@ function init(app, User) {
         successRedirect: '/onSuccess',
         failureRedirect: '/onFailure'
     }));
+
+    app.post('/auth/local/login', function (req, res) {
+        console.log("User Login : " + req.param('email'));
+        User.findOne({email : req.param('email')}, function (err, result) {
+            console.log("DB Founded : " + result);
+            if(err){
+                console.log("/auth/local/login failed");
+                res.status(err.status || 500);
+                res.render('error', {
+                    message: err.message,
+                    error: {}
+                });
+                throw err;
+            }
+            if(result){
+                if(req.param('email') == undefined){
+                    console.log("Unvalid User Infomation");
+                    res.send(401, "Unvalid User Infomation");
+                }
+                else if(req.param('email')!= undefined && result.password == req.param('password')){
+                    console.log("User " + result.name + "Logged In");
+                    req.session.user_id = result._id;
+                    res.send(200, sign);
+                }
+                else if(result.password != req.param('password')){
+                    console.log("Password Error!");
+                    res.send(400, "Access Denied");
+                }
+            }
+            else {
+                console.log("Can't Find User Data");
+                res.send(400, "Can't Find User Data!");
+            }
+        });
+    });
     //function end
 }

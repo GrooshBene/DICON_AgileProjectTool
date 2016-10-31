@@ -131,9 +131,10 @@ Passport-Facebook Strategy를 이용하여 페이스북 계정을 통해 로그�
 #### 출력
 
 ##### 로그인 성공
-HTTP Status 200
+HTTP Status 200, Express Session user_id has _id Value
 
 ##### 로그인 실패
+- 접근이 제한됨 또는 사용자가 존재하지 않음 - 400
 - 회원정보가 유효하지 않음 - 401
 - 내부 서버 오류 - 500
 

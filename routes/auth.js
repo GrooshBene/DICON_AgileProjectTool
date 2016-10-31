@@ -68,11 +68,6 @@ function init(app, User, randomString) {
             console.log("DB Founded : " + result);
             if(err){
                 console.log("/auth/local/login failed");
-                res.status(err.status || 500);
-                res.render('error', {
-                    message: err.message,
-                    error: {}
-                });
                 throw err;
             }
             if(result){

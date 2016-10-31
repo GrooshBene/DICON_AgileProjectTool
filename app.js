@@ -16,10 +16,27 @@ var UserSchema = new schema({
     profile : String,
     password : String,
     email : String,
-    gender : String
+    projects : [{
+        type : String,
+        ref : 'projects'
+    }]
+});
+
+var ProjectSchema = new schema({
+    _id : String,
+    name : String,
+    invite_link : String
+});
+
+var ProjectUserSchema = new schema({
+    _id : String,
+    _projectId : String,
+    profile : String
 });
 
 var User = mongoose.model('users', UserSchema);
+var Project = mongoose.model('projects', ProjectSchema);
+var ProjectUser = mongoose.model('projectusers', ProjectUserSchema);
 mongoose.connect("mongodb://localhost:27017/agile", function (err) {
     if(err){
         console.log("MongoDB Error");

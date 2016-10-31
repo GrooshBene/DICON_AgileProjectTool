@@ -38,7 +38,8 @@ function init(app, User) {
                     name: profile.displayName,
                     email: profile.email,
                     profile: profile.profile,
-                    password: ""
+                    password: "",
+                    project : []
                 });
                 user.save(function (err) {
                     if (err) console.log(err);
@@ -53,11 +54,12 @@ function init(app, User) {
         });
     }));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook'), function (req, res) {
+        console.log(req.session);
+    });
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
         successRedirect: '/onSuccess',
         failureRedirect: '/onFailure'
     }));
-
     //function end
 }

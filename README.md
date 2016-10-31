@@ -173,7 +173,7 @@ HTTP Status 200, User Schema
 프로젝트
 ----
 
-### /project/list - GET
+### /project/user/list - GET
 현재 속해있는 프로젝트 리스트를 모두 가져옵니다.
 
 #### 입력

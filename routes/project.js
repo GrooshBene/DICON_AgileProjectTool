@@ -110,7 +110,19 @@ function init(app, User, Project, ProjectUser, randomString) {
     });
 
     app.post('/project/invite', function (req, res) {
-        Project.findOne({_id : req.param('project_id')})
+        Project.findOne({_id : req.param('project_id')}, function (err, result) {
+            if(err){
+                console.log('/project/invite DB Error');
+                throw err;
+            }
+            if(req.session._id == null){
+                console.log("Access Denied at /project/invite");
+                res.send(401, "Access Denied");
+            }
+            else if(req.session._id != null){
+                res.send(200, result.invite_link);
+            }
+        })
     })
 
 

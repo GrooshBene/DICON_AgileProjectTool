@@ -66,6 +66,7 @@ app.use('/users', users);
 
 require('./routes/auth.js')(app, User, randomString);
 require('./routes/project.js')(app, User, Project, ProjectUser, randomString);
+require('./routes/chat.js')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

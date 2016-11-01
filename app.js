@@ -31,7 +31,8 @@ var ProjectSchema = new schema({
 var ProjectUserSchema = new schema({
     _id : String,
     _projectId : String,
-    profile : String
+    profile : String,
+    name : String
 });
 
 var User = mongoose.model('users', UserSchema);

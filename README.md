@@ -236,19 +236,21 @@ HTTP Status 200, Invitation Link
 - 내부 DB 에러 - HTTP Status 500
 - 권한 없음 - HTTP Status 401
 
-### /project/join - POST
+### /project/join/(project_id) - GET
 
 프로젝트 초대 링크를 통해 참여합니다.
 
 #### 입력
-- link - 프로젝트 초대 링크 URL 전문입니다.
+- project_id : 참여할 대상 프로젝트의 고유 식별번호입니다. URL에 있는 서브 도메인 형식으로 입력받습니다.
+- profile : file 프로토콜을 이용해 입력합니다. 사용자의 프로필사진입니다.
+- name : 프로젝트 내에서 사용할 사용자의 이름입니다.
 
 #### 출력
 
-##### 발급 성공
+##### 가입 성공
 HTTP Status 200, ProjectUser Schema
 
-##### 발급 실패
+##### 가입 실패
 - URL이 유효하지 않음 - HTTP Status 400
 - 내부 DB 에러 - HTTP Status 500
 - 권한 없음 - HTTP Status 401

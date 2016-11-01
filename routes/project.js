@@ -26,6 +26,25 @@ function init(app, User, Project, ProjectUser, randomString) {
             res.send(401, "Access Denied");
         }
         else if (req.session._id != null) {
+            var projectUser = new ProjectUser({
+                _id: req.session._id,
+                project_id: project._id,
+                name: req.param('name')
+            });
+            User.findOneAndUpdate({_id : req.session._id}, {$push : {projects : project._id}}).exec(function (err, result) {
+                if(err){
+                    console.log('/project/add User Profile Updating DB Error');
+                    throw err;
+                }
+                console.log("User "+ req.session._id + "'s Project Array Has Updated");
+            })
+            projectUser.save(function (err, silence) {
+                if(err){
+                    console.log('project User Saving Error');
+                    throw err;
+                }
+                console.log("Project User Has Created");
+            });
             project.save(function (err, silence) {
                 if (err) {
                     console.log("/project/add DB Error!");
@@ -89,6 +108,10 @@ function init(app, User, Project, ProjectUser, randomString) {
             }
         });
     });
+
+    app.post('/project/invite', function (req, res) {
+        Project.findOne({_id : req.param('project_id')})
+    })
 
 
     //function end

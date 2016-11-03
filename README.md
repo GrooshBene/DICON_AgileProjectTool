@@ -364,3 +364,53 @@ Search Result Object
 - 권한 없음 - HTTP Status 401
 - 프로젝트가 존재하지 않음 - HTTP Status 400
 - 내부 서버 에러 - HTTP Status 500
+
+
+스크럼
+---
+
+### /scrum/project/:project_id
+
+프로젝트에 해당하는 스크럼을 모두 가져옵니다.
+
+#### 입력
+
+- project_id : 프로젝트의 고유 식별번호입니다.
+
+#### 출력
+
+Scrum DB Array
+
+
+### /scrum/add
+
+스크럼을 추가합니다.
+
+#### 입력
+
+- maker : Scrum Maker
+
+- title : Scrum Title
+
+- due : Scrum Deadline
+
+- important : Importance of Scrum
+
+- comment : Scrum Comment
+
+#### 출력
+
+Scrum Schema
+
+
+### /scrum/memo/add
+
+스크럼에 대한 메모를 추가합니다.
+
+#### 입력
+
+- comment : Memo Comment
+
+#### 출력
+
+MemoSchema

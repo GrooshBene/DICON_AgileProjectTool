@@ -6,5 +6,7 @@ module.exports = init;
 
 function init(app, User, Project, ProjectUser, Scrum, randomString) {
 
+    app.post('')
+
     //function end
 }

@@ -21,6 +21,35 @@ function init(app, User, Project, ProjectUser, Scrum, Memo, randomString) {
         });
     });
 
+    app.get('/scrum/project/:project_id', function (req, res) {
+        Project.findOne({_id : req.param('project_id')}, function (err, result) {
+            if(err){
+                console.log('/project/:project_id DB Error');
+                throw err;
+            }
+            if(req.user == null){
+                res.send(401, "Access Denied");
+            }
+            else if(req.user != null){
+                // ProjectUser.find({_id : req.user}, function (err, result) {
+                //     if(err){
+                //         console.log('/project/:project_id DB User Finding Error');
+                //         throw err;
+                //     }
+                //     if(!result){
+                //         res.send(401, "Access Denied");
+                //     }
+                //     else if(result){
+                //         var path = require("path");
+                //         res.sendFile(path.resolve('views/main.html'));
+                //     }
+                // })
+                var path = require("path");
+                res.sendFile(path.resolve('views/scrum.html'));
+            }
+        })
+    })
+
     app.post('/scrum/add', function (req, res) {
         var scrum = new Scrum({
             _id : randomString.generate(11),

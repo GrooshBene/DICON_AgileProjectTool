@@ -5,6 +5,13 @@ Cool6 API 문서
 ==========
 이 문서에서는 Cool6의 웹 프론트엔드를 위해 제공되는 서버에 대한 API에 대해 다룹니다.
 
+서버 구동
+=====
+
+    DICON_AgileProjectTool 디렉토리 기준으로 설명합니다.
+    
+    node www/bin
+
 통신 방법
 ======
 

@@ -65,7 +65,8 @@ var ScrumSchema = new schema({
         type : String,
         ref : 'memos'
     }],
-    project : String
+    project : String,
+    status : number
 });
 
 var MemoSchema = new schema({

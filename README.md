@@ -109,6 +109,47 @@ Scrum
 ### _id
 String, Scrum에 귀속된 고유 식별번호입니다.
 
+### maker
+String, Scrum Maker
+
+### title
+String, Scrum Title
+
+### date
+Date, Date of Scrum Maded
+
+### due
+Date, Scrum Deadline
+
+### important
+Number, Amounts of Importance
+
+### comment
+String, Scrum Comment, Saves ID Of Memo
+
+### project
+String, Project id of Scrum
+
+### status
+Number, Status of Scrum
+    1 - To-Do
+    2 - Doing
+    3 - Done
+
+
+Memo
+----
+Scrum에 부가적으로 달리는 메모에 대한 스키마입니다.
+
+### _id
+String, 메모의 고유 식별번호입니다.
+
+### maker
+String, 메모를 쓴 사람입니다.
+
+### comment
+String, 메모의 내용입니다.
+
 API 레퍼런스
 ====
 

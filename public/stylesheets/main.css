@@ -1,0 +1,167 @@
+html, body{
+  margin: 0px;
+  padding: 0px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  flex-basis: 70px;
+  flex-shrink: 2;
+  border-bottom: 1px solid #DCDCDC;
+}
+.header > .headLeft{
+  display: flex;
+  flex-basis: 200px;
+  flex-shrink: 2;
+  justify-content: flex-start;
+  align-items: center;
+}
+.header > .headLeft > .mainLogoImg{
+  margin-left: 20px;
+}
+.header > .headLeft > .mainLogoImg > img{
+  width:100px;
+  height: auto;
+}
+.headMid{
+  flex:1
+}
+.headRight{
+  display: flex;
+  flex-basis: 100px;
+  flex-shrink: 2;
+  justify-content: center;
+  align-items: center;
+  color:#646464
+}
+.content{
+  display: flex;
+  height: 700px;
+  flex-direction: row;
+}
+.leftSide{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 400px;
+  flex-shrink: 2;
+  justify-content: space-around;
+  border-right: 1px solid #DCDCDC;
+}
+.leftSide > .profile{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.leftSide > .profile > .profileImg{
+  border-radius: 100%;
+  width:175px;
+  height: 175px;
+  margin-bottom: 30px;
+}
+.leftSide > .profile > .profileImg > img{
+  border-radius: 100%;
+  width:175px;
+  height: 175px;
+}
+.leftSide > .profile > .profileName{
+  font-size: 20pt;
+  color:#646464;
+}
+.leftSide > .profile > .profileEmail{
+  font-size: 15pt;
+  color:#BDBDBD;
+}
+.leftSide > .outBtn{
+  display: flex;
+  flex-shrink: 2;
+  flex-basis: 100px;
+  align-items: center;
+  justify-content: center;
+}
+.leftSide > .outBtn > .outBtnBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  width:55px;
+  border-radius: 100%;
+  border: 2px solid #DCDCDC;
+}
+.leftSide > .outBtn > .outBtnBox > img{
+  height: 25px;
+  width:25px;
+  margin-left: 7px;
+}
+.article{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  padding: 20px;
+  min-width: 200px;
+}
+.teamBox{
+  border: 1px solid #646464;
+  flex-shrink: 2;
+  flex-basis: 85px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.teamBox > .teamName{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 15pt;
+  flex:1;
+  color: #646464;
+}
+.teamBox > .teamJoin{
+  flex-shrink: 2;
+  flex-basis: 120px;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  flex-direction: row;
+}
+.teamBox .teamJoinText{
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;;
+  padding-right: 10px;
+  font-size: 11pt;
+  flex:1;
+  color:#496BB7;
+
+}
+.teamBox .teamJoinImg{
+  display: flex;
+  flex-shrink: 2;
+  flex-basis: 40px;
+  justify-content: flex-start;;
+  align-items: center;;
+}
+.teamBox .teamJoinImg > img{
+  width:15px;
+  height: auto;
+}
+
+.outBtnBox:hover{
+  transform:scale(1.1);
+  -webkit-transform:scale(1.1);
+  -moz-transform:scale(1.1); 
+  -o-transform:scale(1.1);
+}
+
+.teamJoinImg:hover{
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+  -moz-transform:scale(1.3); 
+  -o-transform:scale(1.3);
+}
+

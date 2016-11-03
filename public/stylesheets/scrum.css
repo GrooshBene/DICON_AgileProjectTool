@@ -1,0 +1,150 @@
+*{
+    outline:none;
+}
+
+.article div{
+  /*border: 1px solid black;*/
+}
+.content{
+  display: flex;
+  height: 700px;
+}
+.content > .article{
+  flex:1;
+  display: flex;
+  flex-direction: row;
+}
+.article .Todo{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #DCDCDC;
+}
+.article .Doing{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #DCDCDC;
+}
+
+.Doing{
+    
+}
+.Todo{
+    overflow-y:auto;
+}
+.Done{
+    overflow-y:auto;
+}
+
+.article .Done{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+}
+
+.article div > .title{
+  display: flex;
+  flex-basis: 95px;
+  flex-shrink: 2;
+  font-size: 20pt;
+  justify-content: center;
+  align-items: center;
+  color:rgb(118, 132, 199)
+}
+.cardBox{
+  height: 700px;
+  overflow-y:auto;
+}
+.cardView{
+  border: 1px solid rgb(99, 118, 195);
+  background-color: rgb(122, 136, 201);
+  display: flex;
+  flex-direction: column;
+  flex-basis: 170px;
+  flex-shrink: 2;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  
+}
+.cardName{
+  padding: 10px;
+  font-size: 17pt;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  
+}
+.cardNameIndex{
+  flex:1;
+}
+.cardDate{
+  font-size: 10pt;
+  padding-left: 10px;
+  color:rgba(255, 255, 255, 0.6);
+}
+.cardIndex{
+  font-size: 10pt;
+  margin-top: 20px;
+  padding-left: 10px;
+  color:rgba(255, 255, 255, 0.85)
+}
+.cardImg{
+  width:35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: black;
+}
+
+
+.nullView{
+  flex:1;
+}
+
+#memoBtn{
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-size: 10pt;
+  float: right;
+  background: none;
+  border-radius: 13px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+  color:rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+
+}
+.addCard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 130px;
+  flex-shrink: 2;
+}
+#addCardBtn{
+  font-size: 15pt;
+  border-radius: 17px;
+  padding: 5px 30px;
+  color:rgb(99, 118, 195);;
+  background: none;
+  border: 1px solid rgb(99, 118, 195);
+}
+
+
+#addCardBtn:hover{
+    background-color:rgb(99,118,195);
+    color:#fff;
+    font-weight: 900;
+}
+
+#memoBtn:hover{
+    background-color:#fff;
+    color:#434343;
+    font-weight:900;
+}
+

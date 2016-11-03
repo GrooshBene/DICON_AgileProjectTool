@@ -1,0 +1,260 @@
+article{
+  /*height: 700px;*/
+  display: flex;
+  flex-direction: column;;
+}
+article div{
+  /*border: 1px solid black;*/
+}
+article .top{
+  display: flex;
+  flex-basis: 200px;
+  flex-shrink: 2;
+}
+article .middle{
+  display: flex;
+  flex-basis: 300px;
+  flex-shrink: 2;
+}
+article .bottom{
+  display: flex;
+  flex-basis: 200px;
+  flex-shrink: 2;
+}
+.top > .topUser{
+  flex:1;
+  display: flex;
+}
+.top > .topUserLeft{
+  justify-content: flex-end;
+}
+.top > .topUserMid{
+  justify-content: center;
+}
+.top > .topUserRight{
+  justify-content: flex-start;
+}
+.top > .topUser > .usersBox{
+  width: 80%;;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user_1 .userName{
+  background-color: rgb(209, 149, 215)
+}
+.user_2 .userName{
+  background-color: rgb(228, 116, 118)
+}
+.user_3 .userName{
+  background-color: rgb(122, 136, 201)
+}
+.user_4 .userName{
+  background-color: rgb(85, 209, 225)
+}
+.user_5 .userName{
+  background-color: rgb(104, 183, 244)
+}
+.topUser .usersBox > .userName{
+  height: 50%;
+  margin-bottom: 10px;
+  display: flex;
+  /*align-items: center;*/
+}
+.topUser .usersBox > .userName > .userNameIndex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;;
+  flex:2;
+}
+.topUser .usersBox > .userName > .userNameIndex > .userNameIndex_name{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width:100%;
+  flex:3;
+}
+.topUser .usersBox > .userName > .userNameIndex > .userNameIndex_pos{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width:100%;
+  margin-top: 5px;
+  flex:2;
+}
+.topUser .usersBox > .userName > .userNameNumber{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 90px;
+  flex-shrink: 2;
+  margin: 5px;
+}
+.topUser .usersBox > .userChat{
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0px;
+}
+.middle > .sideUser{
+  flex-basis: 300px;
+  flex-shrink: 2;
+}
+.sideUser .usersBox{
+  width: 100%;;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.sideUser .usersBox > .userName{
+  flex-basis: 110px;
+  flex-shrink: 2;
+  display: flex;
+  flex-direction: column;
+}
+.leftUser .usersBox > .userName{
+  margin-right: 10px;
+}
+.rightUser .usersBox > .userName{
+  margin-left: 10px;
+}
+.sideUser .usersBox > .userChat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:60%;
+  padding: 10px 0px;
+  height: 40%;
+}
+.sideUser .usersBox > .userName > .userNameIndex{
+  display: flex;
+  flex:2;
+  flex-direction: column;
+}
+.sideUser .usersBox > .userName > .userNameNumber{
+  display: flex;
+  flex-basis: 95px;
+  flex-shrink: 2;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+.sideUser .usersBox > .userName > .userNameIndex > .userNameIndex_name{
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
+  width:100%;
+  flex:1;
+
+}
+.sideUser .usersBox > .userName > .userNameIndex > .userNameIndex_pos{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 5px;
+  width:100%;
+  flex:1;
+}
+.middle > .timeView{
+  flex:1;
+  border : 1px solid black;
+}
+.bottom > .chatView{
+  display: flex;
+  justify-content: flex-end;
+  flex:1;
+  flex-direction: row;
+}
+.chatView > .chatBox{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 300px;
+  flex-shrink: 2;
+}
+.chatView > .chatBox > .chatIndex{
+  flex:1;
+}
+.chatIndex > .chatUl{
+  height: 150px;
+  list-style: none;
+  -webkit-padding-start: 0px;
+  overflow: scroll;
+}
+.chatIndex > .chatUl > .chatList{
+  font-size: 11pt;
+  /*border: 1px solid black;*/
+  padding: 5px;
+}
+.chatView > .chatBox > .chatSend{
+  /*display: flex;*/
+  height: 40px;
+  /*flex-direction: column;*/
+  background-color: rgb(97, 97, 97);
+  /*border: 1px solid green;*/
+}
+.chatSend > input{
+  color:white;
+  background:none;
+  border:none;
+  width:95%;
+  padding: 10px;
+  height: auto;
+  outline: none;
+  font-size: 11pt;
+  padding-left: 5px;
+}
+.bottom > .cardView{
+  flex:2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 33pt;
+  flex:1;
+  margin: 10px;
+  height: 70px;
+  /*display: inline;*/
+}
+.bottom .nullLeftView{
+  flex-basis: 120px;
+  flex-shrink: 2;
+}
+/*.cardView > .card_0{
+  margin:
+}*/
+.userNameNumber{
+  background-color: white;
+  font-size: 24pt;
+  font-weight: 700;
+  color:rgb(118, 118, 118)
+}
+.userNameIndex_name{
+  font-size: 20pt;
+  font-weight: 600;
+  color:white;
+}
+.userNameIndex_pos{
+  font-size: 12pt;
+  color:rgba(255, 255, 255, 0.5)
+}
+.userChat{
+  font-size : 12pt;
+}
+.cardView{
+  color:rgb(118, 118, 118)
+}
+.card{
+  min-width: 50px;
+  max-width: 50px;
+  color:rgb(118, 118, 118);
+  border: 1px solid rgb(118, 118, 118)
+}
+.userChat{
+  color:rgb(131, 131, 131);
+  border: 1px solid rgb(236, 236, 236);
+}

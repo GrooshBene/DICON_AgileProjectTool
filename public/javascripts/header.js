@@ -1,11 +1,11 @@
 $(function(){
     
     $("#DashBoard").click(function(){
-        location.href="team.html"; 
+        location.href= "/project/1";
     });
     
     $("#scrum").click(function moveSCrum(){
-        location.href="scrum.html"; 
+        location.href="/scrum/project/1";
     });
     
     $("#xp").click(function moveXp(){
@@ -17,6 +17,6 @@ $(function(){
     });
    
     $(".outBtnBox").click(function goOut(){
-       location.href="main.html";    
+       location.href="/project/user/list";
     });
 });

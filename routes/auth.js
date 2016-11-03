@@ -22,7 +22,7 @@ function init(app, User, randomString) {
     passport.use(new FacebookStrategy({
         clientID: "1264766676921309",
         clientSecret: "d64761ef5879fcd83e3551ad585980a6",
-        callbackURL: "http://kafuuchino.one:3000/auth/facebook/callback",
+        callbackURL: "http://localhost:3000/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     }, function (accessToken, refreshToken, profile, done) {
         console.log(profile);
@@ -44,21 +44,21 @@ function init(app, User, randomString) {
                 user.save(function (err) {
                     if (err) console.log(err);
                     else {
-                        done(null, profile);
+                        done(null, profile.id);
                     }
                 });
             }
             else if (user) {
-                done(null, profile);
+                done(null, profile.id);
             }
         });
     }));
 
     app.get('/auth/facebook', passport.authenticate('facebook'), function (req, res) {
-        console.log(req.session);
+
     });
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        successRedirect: '/onSuccess',
+        successRedirect: '/project/user/list',
         failureRedirect: '/onFailure'
     }));
 

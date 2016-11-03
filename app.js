@@ -6,9 +6,27 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randomString = require('randomstring');
+var serveStatic = require('serve-static');
 var schema = mongoose.Schema;
 
 var app = express();
+
+var session = require('express-session');
+var sessionStore = require('sessionstore');
+store = sessionStore.createSessionStore();
+
+app.use(session({
+    store: store,
+    secret: 'grooshbene',
+    cookie: {
+        path: '/',
+        expires: false
+    }
+}));
+
+app.use(serveStatic(__dirname, ({
+    'index': false
+})));
 
 var UserSchema = new schema({
     _id : String,
@@ -35,9 +53,32 @@ var ProjectUserSchema = new schema({
     name : String
 });
 
+var ScrumSchema = new schema({
+    _id : String,
+    maker : String,
+    title : String,
+    date : Date,
+    due : Date,
+    important : Number,
+    comment : String,
+    memo : [{
+        type : String,
+        ref : 'memos'
+    }],
+    project : String
+});
+
+var MemoSchema = new schema({
+    _id : String,
+    maker : String,
+    comment : String
+});
+
 var User = mongoose.model('users', UserSchema);
 var Project = mongoose.model('projects', ProjectSchema);
 var ProjectUser = mongoose.model('projectusers', ProjectUserSchema);
+var Scrum = mongoose.model('scrums', ScrumSchema);
+var Memo = mongoose.model('memos', MemoSchema);
 mongoose.connect("mongodb://localhost:27017/agile", function (err) {
     if(err){
         console.log("MongoDB Error");
@@ -66,7 +107,8 @@ app.use('/users', users);
 
 require('./routes/auth.js')(app, User, randomString);
 require('./routes/project.js')(app, User, Project, ProjectUser, randomString);
-require('./routes/chat.js')(app);
+require('./routes/chat.js')(app, User, Project, ProjectUser, randomString);
+require('./routes/scrum.js')(app, User, Project, ProjectUser, Scrum, Memo, randomString);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,7 @@
 $(function(){
    
     $(".teamJoin").click(function teamJoin(){
-       location.href="team.html"; 
+       location.href="/project/1";
     });
     
 });

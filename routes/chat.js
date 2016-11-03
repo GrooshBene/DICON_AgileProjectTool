@@ -3,7 +3,7 @@
  */
 
 module.exports = init;
-function init(app) {
+function init(app, User, Project, ProjectUser, randomString) {
 
     //function end
 }

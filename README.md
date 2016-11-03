@@ -388,8 +388,6 @@ Scrum DB Array
 
 #### 입력
 
-- maker : Scrum Maker
-
 - title : Scrum Title
 
 - due : Scrum Deadline

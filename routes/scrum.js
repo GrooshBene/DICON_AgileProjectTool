@@ -4,7 +4,7 @@
 
 module.exports = init;
 
-function init(app, User, Project, ProjectUser, Scrum, randomString) {
+function init(app, User, Project, ProjectUser, Scrum, Memo, randomString) {
 
     app.post('/scrum/project/:project_id', function (req, res) {
         Scrum.find({project : req.param('project_id')}, function (err, result) {
@@ -24,7 +24,7 @@ function init(app, User, Project, ProjectUser, Scrum, randomString) {
     app.post('/scrum/add', function (req, res) {
         var scrum = new Scrum({
             _id : randomString.generate(11),
-            maker : req.param('maker'),
+            maker : req.user,
             title : req.param('title'),
             date : new Date(),
             due : req.param('due'),
@@ -46,7 +46,27 @@ function init(app, User, Project, ProjectUser, Scrum, randomString) {
         else if(req.user == undefined){
             res.send(401, "Access Denied");
         }
-    })
+    });
+
+    app.post('/scrum/memo/add', function (req, res) {
+        var memo = new Memo({
+            _id : randomString.generate(10),
+            maker : req.user,
+            comment : req.param('comment')
+        });
+        if(req.user != undefined){
+            memo.save(function (err, silence) {
+                if(err){
+                    console.log('/scrum/memo/add Saving DB Error');
+                    throw err;
+                }
+                res.send(200, memo);
+            })
+        }
+        else if(req.user == undefined){
+            res.send(401, "Access Denied");
+        }
+    });
 
     //function end
 }

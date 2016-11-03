@@ -5,7 +5,7 @@
 module.exports = init;
 
 function init(app, User, Project, ProjectUser, randomString) {
-    app.get('/project/user/list', function (req, res) {
+    app.post('/project/user/list', function (req, res) {
         User.findOne({_id: req.session._id}).exec(function (err, result) {
             if (err) {
                 console.log('/project/user/list DB Error');

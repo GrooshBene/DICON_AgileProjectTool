@@ -27,13 +27,8 @@
   border-right: 1px solid #DCDCDC;
 }
 
-.Doing{
-    
-}
-.Todo{
-    overflow-y:auto;
-}
-.Done{
+.doingBox, .doneBox{
+    height:700px;
     overflow-y:auto;
 }
 
@@ -54,6 +49,7 @@
 }
 .cardBox{
   height: 700px;
+  
   overflow-y:auto;
 }
 .cardView{
@@ -66,7 +62,7 @@
   margin: 20px;
   margin-top: 10px;
   margin-bottom: 0px;
-  
+  width:30vw;
 }
 .cardName{
   padding: 10px;

@@ -1,17 +1,22 @@
 var addTimeLine;
 var cal;
 var todo;
-var chat;
+
+var month = 11;
+var year = 2016;
+var e;
+
 var i = 1;
-function addTL(date, num){
+
+function addTL(date){
         addTimeLine = "<div class=\"timeLine conference"+i+"\">";
         addTimeLine +="<div class=\"timeLineProfile\">";
         addTimeLine +="<div class=\"timeLineProfileImg\">";
-        addTimeLine +="<img src=\"../public/images/profile.png\" alt=\"\" />";
+        addTimeLine +="<img src=\"img/profile.png\" alt=\"\" />";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineProfileIndex\">";
         addTimeLine +="<div class=\"timeLineProfileName\">";
-        addTimeLine +="이장훈";
+        addTimeLine +="USER";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineProfileDate\">";
         addTimeLine +=$(".viewMonth").html()+"."+date;
@@ -22,108 +27,128 @@ function addTL(date, num){
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineIndex\">";
         addTimeLine +="<div class=\"timeLineContent\">";
-        addTimeLine +="<div id=\"c"+num+"\" class=\"contentName\">";
-        addTimeLine +="내용을 추가해 주세요";
+        addTimeLine +="<div class=\"contentName\">";
+        addTimeLine +="한수가 밥사주기";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"contentDate\">";
         addTimeLine +="개발팀 -"+$(".viewMonth").html()+date;
         addTimeLine +="</div>";
-        addTimeLine +="<div id=\"co"+num+"\" class=\"contentBtn\">";
+        addTimeLine +="<div class=\"contentBtn\">";
         addTimeLine +="회의록 작성";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
-    
-        console.log(num);
         i++;
         if(i>3){
             i=1;
         }
 }
 
-function resetCal(){
-        var a = 2;
-        cal = "<tr>"
-        cal +="<td></td><td></td><td></td><td></td><td></td><td></td>";
-        cal += "<td class=\"date\"><div>1</div></td></tr>";
-        for(var i = 1; i <=4; i ++){
-            cal += "<tr>";
-            for(var k = 1; k<=7; k++){
-                
-                cal += "<td class=\"date\"><div>";
-                cal += a
-                cal += "</div></td>";
-                
-                a++;
-            }
-            cal += "</tr>";
+function resetCal(date,move){
+    //2008 1,1 월
+    var calDay = 1;
+    cal = "";
+    var check;
+    if(move == 1){
+        month--;
+        
+        if(month == 0){
+            month = 12;
+            year--;
         }
+    }
+    else{
+        month++;
+        
+        if(month == 13){
+            month = 1;
+            year++;
+        }
+    }
     
-        cal += "<tr>";
-        cal += "<td class=\"date\"><div>29</div></td>";
-        cal += "<td class=\"date\"><div>30</div></td>";
-        cal += "<td class=\"date\"><div>31</div></td></tr>";
+    if(month < 8 && month%2 == 1){
+        check = 31;
+    }
+    else if(month > 7 && month%2 == 0){
+        check = 31;
+    }
+    else{
+        check = 30;
+    }
+    
+    console.log(month +"a"+ year)
+    var day = new Date(year+"."+month+".1").getDay();
+    console.log(day);
+    if(day == 0){
+        e = 7;   
+        var line = 5;
+    }
+    else{
+        e = day;
+        if(e == 6 ){
+            var line = 5;
+        }
+        else{
+            var line = 4;
+        }
+        cal = "<tr>";
+        
+        for(var i = 0; i<e; i++){
+            cal += "<td></td>"
+        }
+        for(var k = 7-i; k>=1; k--){
+            cal += "<td class=\"date\"><div>"
+            cal += calDay
+            cal +="</div></td>"
+            calDay++;
+        }
+        
+        cal += "</tr>"
+    }
 
+    for(var i = 0; i<line; i++){
+        cal += "<tr>"
+        for(var k = 0; k<7; k++){
+            cal += "<td class=\"date\"><div>"
+            cal += calDay
+            cal += "</div></td>"
+            if(calDay>check-1){
+                i = line;
+                k = 7;
+            }
+            else{
+                calDay++;
+            }
+        }
+        cal += "</tr>"
+    }
+    
+    
 }
 
-function addTodo(i){
+function addTodo(){
     todo = "<div class=\"cardView\">";
     todo += "<div class=\"cardName\">";
-    todo += "<div id=\"name"+i+"\" class=\"cardNameIndex\">";
-    todo += "제목을 추가해 주세요";
+    todo += "<div class=\"cardNameIndex\">";
+    todo += "로그인 기능";
     todo += "</div>";
     todo += "<div class=\"cardImg\">";
     // add img here
     todo += "</div>";
     todo += "</div>";
-    todo += "<div id=\"date"+i+"\" class=\"cardDate\">";
-    todo += "날짜를 추가해 주세요";
+    todo += "<div class=\"cardDate\">";
+    todo += "2016.10.31 | 4일 후 까지, 중요도 : 30";
     todo += "</div>";
-    todo += "<div id=\"index"+i+"\"class=\"cardIndex\">";
-    todo += "내용을 추가해 주세요";
+    todo += "<div class=\"cardIndex\">";
+    todo += "비밀번호는 *로 추가 요망";
     todo += "</div>";
     todo += "<div class=\"nullView\">";
     todo += "</div>";
     todo += "<div class=\"cardMemo\">";
-    todo += "<button id=\"memoBtn\" class=\"mBtn"+i+"\" type=\"button\" name=\"button\">메모</button>";
+    todo += "<button id=\"memoBtn\" type=\"button\" name=\"button\">메모</button>";
     todo += "</div>";
     todo += "</div>";
 
     
-}
-function addChat_Lee(message){
-        chat = "<div class=\"chatValue\">";
-        chat += "<div class=\"chatProfile\">";
-        chat += "<div class=\"chatProfileImg\">";
-        chat += "<div class=\"img\">";
-        chat += "<div class=\"roomProfile\">";
-        chat += "강";
-        chat += "</div>";
-        chat += "</div>";
-        chat += "</div>";
-        chat += "<div class=\"chatProfileName\">";
-        chat += "강은솔";
-        chat += "</div>";
-        chat += "</div>";
-        chat += "<div class=\"chatIndex\">";
-        chat += "<div class=\"chatBox\">";
-        chat += message;
-        chat += "</div>";
-        chat += "</div>";
-        chat += "</div>";
-}
-
-function addChat(message){
-        chat = "<div id=\"aaaa\" class=\"chatValue\">";
-        chat += "<div id=\"right\" class=\"chatProfile\">";
-        
-      
-        chat += "</div>";
-        chat += "<div id=\"right\" class=\"chatIndex\">";
-        chat += "<div id=\"right\" class=\"chatBox\">";
-        chat += message;
-        chat += "</div>";
-        chat += "</div>";
-        chat += "</div>";
 }

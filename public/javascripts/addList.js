@@ -1,17 +1,17 @@
 var addTimeLine;
 var cal;
 var todo;
-
+var chat;
 var i = 1;
-function addTL(date){
+function addTL(date, num){
         addTimeLine = "<div class=\"timeLine conference"+i+"\">";
         addTimeLine +="<div class=\"timeLineProfile\">";
         addTimeLine +="<div class=\"timeLineProfileImg\">";
-        addTimeLine +="<img src=\"img/profile.png\" alt=\"\" />";
+        addTimeLine +="<img src=\"../public/images/profile.png\" alt=\"\" />";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineProfileIndex\">";
         addTimeLine +="<div class=\"timeLineProfileName\">";
-        addTimeLine +="USER";
+        addTimeLine +="이장훈";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineProfileDate\">";
         addTimeLine +=$(".viewMonth").html()+"."+date;
@@ -22,18 +22,20 @@ function addTL(date){
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"timeLineIndex\">";
         addTimeLine +="<div class=\"timeLineContent\">";
-        addTimeLine +="<div class=\"contentName\">";
-        addTimeLine +="한수가 밥사주기";
+        addTimeLine +="<div id=\"c"+num+"\" class=\"contentName\">";
+        addTimeLine +="내용을 추가해 주세요";
         addTimeLine +="</div>";
         addTimeLine +="<div class=\"contentDate\">";
         addTimeLine +="개발팀 -"+$(".viewMonth").html()+date;
         addTimeLine +="</div>";
-        addTimeLine +="<div class=\"contentBtn\">";
+        addTimeLine +="<div id=\"co"+num+"\" class=\"contentBtn\">";
         addTimeLine +="회의록 작성";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
         addTimeLine +="</div>";
+    
+        console.log(num);
         i++;
         if(i>3){
             i=1;
@@ -65,28 +67,63 @@ function resetCal(){
 
 }
 
-function addTodo(){
+function addTodo(i){
     todo = "<div class=\"cardView\">";
     todo += "<div class=\"cardName\">";
-    todo += "<div class=\"cardNameIndex\">";
-    todo += "로그인 기능";
+    todo += "<div id=\"name"+i+"\" class=\"cardNameIndex\">";
+    todo += "제목을 추가해 주세요";
     todo += "</div>";
     todo += "<div class=\"cardImg\">";
     // add img here
     todo += "</div>";
     todo += "</div>";
-    todo += "<div class=\"cardDate\">";
-    todo += "2016.10.31 | 4일 후 까지, 중요도 : 30";
+    todo += "<div id=\"date"+i+"\" class=\"cardDate\">";
+    todo += "날짜를 추가해 주세요";
     todo += "</div>";
-    todo += "<div class=\"cardIndex\">";
-    todo += "비밀번호는 *로 추가 요망";
+    todo += "<div id=\"index"+i+"\"class=\"cardIndex\">";
+    todo += "내용을 추가해 주세요";
     todo += "</div>";
     todo += "<div class=\"nullView\">";
     todo += "</div>";
     todo += "<div class=\"cardMemo\">";
-    todo += "<button id=\"memoBtn\" type=\"button\" name=\"button\">메모</button>";
+    todo += "<button id=\"memoBtn\" class=\"mBtn"+i+"\" type=\"button\" name=\"button\">메모</button>";
     todo += "</div>";
     todo += "</div>";
 
     
+}
+function addChat_Lee(message){
+        chat = "<div class=\"chatValue\">";
+        chat += "<div class=\"chatProfile\">";
+        chat += "<div class=\"chatProfileImg\">";
+        chat += "<div class=\"img\">";
+        chat += "<div class=\"roomProfile\">";
+        chat += "강";
+        chat += "</div>";
+        chat += "</div>";
+        chat += "</div>";
+        chat += "<div class=\"chatProfileName\">";
+        chat += "강은솔";
+        chat += "</div>";
+        chat += "</div>";
+        chat += "<div class=\"chatIndex\">";
+        chat += "<div class=\"chatBox\">";
+        chat += message;
+        chat += "</div>";
+        chat += "</div>";
+        chat += "</div>";
+}
+
+function addChat(message){
+        chat = "<div id=\"aaaa\" class=\"chatValue\">";
+        chat += "<div id=\"right\" class=\"chatProfile\">";
+        
+      
+        chat += "</div>";
+        chat += "<div id=\"right\" class=\"chatIndex\">";
+        chat += "<div id=\"right\" class=\"chatBox\">";
+        chat += message;
+        chat += "</div>";
+        chat += "</div>";
+        chat += "</div>";
 }

@@ -3,7 +3,15 @@ $(function(){
     var month = d.getMonth();
     var year = d.getFullYear();
     
+    var num = 1;
     console.log(month);
+    
+    $("#conB").click(function(){
+        var text = prompt("내용을 입력해 주세요","");
+        
+        $("#conN").html(text);
+        
+    });
     
     $(".date").droppable({
 		
@@ -12,10 +20,18 @@ $(function(){
 
 		drop:function(event, ui){
             console.log($(this).text());
-			addTL($(this).text());
-            $(this).html($(ui.draggable.clone()));
+            num++;
+			addTL($(this).text(),num);
+            $(this).html($(ui.draggable.clone   ()));
             $(".article").append(addTimeLine);  
-		}
+		    $("#co"+num).click(function(){
+                console.log("#c"+num)
+                var text = prompt("내용을 입력해 주세요","");
+
+                $("#c"+num).html(text);
+
+            });
+        }
 	});
     
     $(".addBtn").draggable({
@@ -44,10 +60,22 @@ $(function(){
 
             drop:function(event, ui){
                 console.log($(this).text());
-                addTL($(this).text());
+                console.log(timeLineNum);
+                num++;
+                
+                addTL($(this).text(),num);
                 $(this).html($(ui.draggable.clone()));
                 $(".article").append(addTimeLine);  
+                
+                $("#co"+num).click(function(){
+                    console.log("#c"+num)
+                    var text = prompt("내용을 입력해 주세요","");
+                        
+                    $("#c"+num).html(text);
+
+                });
             }
+            
         });
         
     });
@@ -69,13 +97,24 @@ $(function(){
 
             drop:function(event, ui){
                 console.log($(this).text());
-                addTL($(this).text());
+                num++;
+                addTL($(this).text(),num);
                 $(this).html($(ui.draggable.clone()));
                 $(".article").append(addTimeLine);  
+                
+                $("#co"+num).click(function(){
+                    console.log("#c"+num)
+                    var text = prompt("내용을 입력해 주세요","");
+                        
+                    $("#c"+num).html(text);
+
+                });
             }
         });
     
     });
+    
+    
     
     
     

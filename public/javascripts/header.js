@@ -9,11 +9,11 @@ $(function(){
     });
     
     $("#xp").click(function moveXp(){
-        location.href="xp.html"; 
+        alert("개발중");
     });
     
     $("#chat").click(function moveChat(){
-        location.href="chat.html"; 
+        location.href="../../views/chat.html"; 
     });
    
     $(".outBtnBox").click(function goOut(){

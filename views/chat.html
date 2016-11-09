@@ -3,18 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>해적왕 원준갓</title>
-    <!-- <link rel="stylesheet" href="team.css" media="screen" title="no title"> -->
-    <link rel="stylesheet" href="/public/stylesheets/header.css" media="screen" title="no title">
-    <link rel="stylesheet" href="/public/styleshee/chat.css" media="screen" title="no title">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+    <script src="../socket.io/socket.io.js"></script>
+    <scirpt src="../public/javascripts/chat.js"></scirpt>
+  
+    <!-- <link rel="stylesheet" href="team.css" media="screen" title="no title"> -->
+    <link rel="stylesheet" href="../public/stylesheets/header.css" media="screen" title="no title">
+    <link rel="stylesheet" href="../public/stylesheets/chat.css" media="screen" title="no title">
+
+    
   </head>
   <body>
     <div class="container">
       <header class="header">
         <div class="headLeft">
           <div class="mainLogoImg">
-            <img src="/public/images/icon/title_main.png" alt="" />
+            <img src="../public/images/icon/title_main.png" alt="" />
           </div>
           <div class="teamName">
             해적왕 원준갓 디콘
@@ -25,25 +30,25 @@
         </div>
         <div class="headRight">
           <div id="xp" class="xpBtn navBtn">
-            <img src="/public/images/icon/ic_main_side_cal_xp.png" alt="" />
+            <img src="../public/images/icon/ic_main_side_cal_xp.png" alt="" />
             <div class="btnText">
               XP
             </div>
           </div>
           <div id="scrum" class="scrumBtn navBtn">
-            <img src="/public/images/icon/ic_main_side_cal_scrum.png" alt="" />
+            <img src="../public/images/icon/ic_main_side_cal_scrum.png" alt="" />
             <div class="btnText">
               SCRUM
             </div>
           </div>
           <div id="chat" class="chatBtn navBtn">
-            <img src="/public/images/icon/ic_main_nav_chat_off.png" alt="" />
+            <img src="../public/images/icon/ic_main_nav_chat_off.png" alt="" />
             <div class="btnText">
               채팅방
             </div>
           </div>
           <div id="DashBoard" class="dashBtn navBtn">
-            <img src="/public/images/icon/ic_main_nav_dashboard_off.png" alt="" />
+            <img src="../public/images/icon/ic_main_nav_dashboard_off.png" alt="" />
             <div class="btnText">
               대시보드
             </div>
@@ -55,14 +60,14 @@
           <aside class="leftSide">
             <div class="roomView">
               <ul>
-                <li><div class="roomProfile">개</div><div class="roomName">개발 채팅방</div></li>
-                <li><div class="roomProfile">디</div><div class="roomName">디자인 채팅방</div></li>
-                <li><div class="roomProfile">기</div><div class="roomName">기획 채팅방</div></li>
-                <li><div class="roomProfile">잡</div><div class="roomName">잡담</div></li>
+                <li id="dev" class="a developed"><div id="devFr" class="roomProfile developed">강</div><div class="roomName developed">강은솔</div></li>
+                <li id="des" class="a design"><div id="desFr" class="roomProfile design">송</div><div class="roomName design">송원준</div></li>
+                <li id="pla" class="a planer"><div id="plaFr" class="roomProfile planer">구</div><div class="planer" class="roomName planer">구창림</div></li>
+                <li id="suv" class="a talk"><div id="suvFr" class="roomProfile talk">박</div><div class="roomName talk">박지수</div></li>
               </ul>
             </div>
             <div class="addRoomView">
-              <img id="plusImg" src="/public/images/icon/btn_addteam.png" alt="" />
+              <img id="plusImg" src="../public/images/icon/btn_addteam.png" alt="" />
               <div class="addRoomText">
                 새로운 채팅
               </div>
@@ -70,64 +75,28 @@
           </aside>
           <div class="chatting">
             <div class="chatView">
-              <div class="chatValue">
-                <div class="chatProfile">
-                  <div class="chatProfileImg">
-                    <div class="img">
-
-                    </div>
-                  </div>
-                  <div class="chatProfileName">
-                    조성운
-                  </div>
-                </div>
-                <div class="chatIndex">
-                  <div class="chatBox">
-                    야 기분 좋다
-                  </div>
-                </div>
-              </div>
-              <div class="chatValue">
-                <div class="chatProfile">
-                  <div class="chatProfileImg">
-                    <div class="img">
-
-                    </div>
-                  </div>
-                  <div class="chatProfileName">
-                    조성운
-                  </div>
-                </div>
-                <div class="chatIndex">
-                  <div class="chatBox">
-                    야 기분 좋다
-                  </div>
-                </div>
-              </div>
-              <div class="chatValue">
-                <div class="chatProfile">
-
-                </div>
-                <div class="chatIndex">
-
-                </div>
-              </div>
+              
+             
             </div>
             <div class="bottomView">
               <div class="sendFile">
-                <img src="/public/images/icon/btn_chat_file.png" alt="" />
+                <img src="../public/images/icon/btn_chat_file.png" alt="" />
               </div>
               <div class="sendImg">
-                <img src="/public/images/icon/btn_chat_vote.png" alt="" />
+                <img src="../public/images/icon/btn_chat_vote.png" alt="" />
               </div>
-              <input type="text" name="name" value="" class="inputSend" placeholder="작성..">
-              <button type="button" name="button">전송</button>
+              <input id="aaaaaa" type="text" name="name" value="" class="inputSend" placeholder="작성..">
+              <button class="button" type="button" name="button">전송</button>
             </div>
           </div>
         </article>
       </div>
     </div>
+    
       
-    <script src="/public/javascripts/header.js"></script>
+    <script src="../public/javascripts/addList.js"></script>
+    <script src="../public/javascripts/header.js"></script>
+    <script src="../public/javascripts/xp.js"></script>  
+      
   </body>
 </html>

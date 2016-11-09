@@ -11,6 +11,9 @@ var schema = mongoose.Schema;
 
 var app = express();
 
+app.io = require('socket.io')();
+
+var sio = app.io;
 
 
 var session = require('express-session');
@@ -110,7 +113,7 @@ app.use('/users', users);
 
 require('./routes/auth.js')(app, User, randomString);
 require('./routes/project.js')(app, User, Project, ProjectUser, randomString);
-require('./routes/chat.js')(app, User, Project, ProjectUser, randomString);
+require('./routes/chat.js')(app, User, Project, ProjectUser, randomString, sio);
 require('./routes/scrum.js')(app, User, Project, ProjectUser, Scrum, Memo, randomString);
 
 // catch 404 and forward to error handler

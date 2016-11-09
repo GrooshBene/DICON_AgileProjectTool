@@ -28,8 +28,8 @@ function init(app, User, Project, ProjectUser, randomString) {
     })
 
     app.post('/projectuser/get/list', function (req, res) {
-        ProjectUser.find({_projectId : req.param('project_name')}, function (err, result) {
-            if(err){
+        ProjectUser.find({_projectId: req.param('project_name')}, function (err, result) {
+            if (err) {
                 console.log("/project/user/getlist DB Error");
                 throw err;
             }
@@ -42,38 +42,39 @@ function init(app, User, Project, ProjectUser, randomString) {
             res.send(401, "Access Denied");
         }
         else if (req.user != null) {
-        var project = new Project({
-            _id: randomString.generate(13),
-            name: req.param('name'),
-            invite_link: "http://kafuuchino.one:3000/project/join/" + req.param('name')
-        });
-        var projectUser = new ProjectUser({
-            _id: req.user,
-            project_id: project._id,
-            name: req.param('name')
-        });
-        User.findOneAndUpdate({_id: req.user}, {$push: {projects: project._id}}).exec(function (err, result) {
-            if (err) {
-                console.log('/project/add User Profile Updating DB Error');
-                throw err;
-            }
-            console.log("User " + req.user + "'s Project Array Has Updated");
-        })
-        projectUser.save(function (err, silence) {
-            if (err) {
-                console.log('project User Saving Error');
-                throw err;
-            }
-            console.log("Project User Has Created");
-        });
-        project.save(function (err, silence) {
-            if (err) {
-                console.log("/project/add DB Error!");
-                throw err;
-            }
-            console.log("Project Added : " + project);
-            res.send(200, project);
-        });
+            var projectId = randomString.generate(13);
+            var project = new Project({
+                _id: projectId,
+                name: req.param('name'),
+                invite_link: "http://kafuuchino.one:3000/project/join/" + req.param('name')
+            });
+            var projectUser = new ProjectUser({
+                _id: req.user,
+                project_id: projectId,
+                name: req.param('name')
+            });
+            User.findOneAndUpdate({_id: req.user}, {$push: {projects: projectId}}).exec(function (err, result) {
+                if (err) {
+                    console.log('/project/add User Profile Updating DB Error');
+                    throw err;
+                }
+                console.log("User " + req.user + "'s Project Array Has Updated");
+            })
+            projectUser.save(function (err, silence) {
+                if (err) {
+                    console.log('project User Saving Error');
+                    throw err;
+                }
+                console.log("Project User Has Created");
+            });
+            project.save(function (err, silence) {
+                if (err) {
+                    console.log("/project/add DB Error!");
+                    throw err;
+                }
+                console.log("Project Added : " + project);
+                res.send(200, project);
+            });
         }
     });
 
@@ -104,7 +105,7 @@ function init(app, User, Project, ProjectUser, randomString) {
             _projectId: req.param('project_name'),
             name: req.param('name')
         });
-        Project.find({name : req.param('project_name')}).exec(function (err, result) {
+        Project.find({name: req.param('project_name')}).exec(function (err, result) {
             if (err) {
                 console.log("/project/join/:project_name DB Error");
                 throw err;
@@ -119,15 +120,15 @@ function init(app, User, Project, ProjectUser, randomString) {
                     res.send(401, "Access Denied");
                 }
                 else if (req.user != null) {
-                projectUser.save(function (err, silence) {
-                    if (err) {
-                        console.log('/project/join/:project_name Saving DB Error');
-                        throw err;
-                    }
-                    console.log("Project User " + projectUser._id + "Created");
-                    res.send(200, projectUser);
-                });
-            }
+                    projectUser.save(function (err, silence) {
+                        if (err) {
+                            console.log('/project/join/:project_name Saving DB Error');
+                            throw err;
+                        }
+                        console.log("Project User " + projectUser._id + "Created");
+                        res.send(200, projectUser);
+                    });
+                }
             }
         });
     });
@@ -144,8 +145,8 @@ function init(app, User, Project, ProjectUser, randomString) {
                 console.log("Access Denied at /project/invite");
                 res.send(401, "Access Denied");
             }
-            else if(req.user != null){
-            res.send(200, result.invite_link);
+            else if (req.user != null) {
+                res.send(200, result.invite_link);
             }
         })
     })
@@ -159,22 +160,22 @@ function init(app, User, Project, ProjectUser, randomString) {
             if (req.user == null) {
                 res.send(401, "Access Denied");
             }
-            else if(req.user != null){
-            // ProjectUser.find({_id : req.user}, function (err, result) {
-            //     if(err){
-            //         console.log('/project/:project_id DB User Finding Error');
-            //         throw err;
-            //     }
-            //     if(!result){
-            //         res.send(401, "Access Denied");
-            //     }
-            //     else if(result){
-            //         var path = require("path");
-            //         res.sendFile(path.resolve('views/main.html'));
-            //     }
-            // })
-            var path = require("path");
-            res.sendFile(path.resolve('views/team.html'));
+            else if (req.user != null) {
+                // ProjectUser.find({_id : req.user}, function (err, result) {
+                //     if(err){
+                //         console.log('/project/:project_id DB User Finding Error');
+                //         throw err;
+                //     }
+                //     if(!result){
+                //         res.send(401, "Access Denied");
+                //     }
+                //     else if(result){
+                //         var path = require("path");
+                //         res.sendFile(path.resolve('views/main.html'));
+                //     }
+                // })
+                var path = require("path");
+                res.sendFile(path.resolve('views/team.html'));
             }
         })
     })

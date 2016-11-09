@@ -117,7 +117,7 @@ function init(app, User, randomString) {
                     }
                     else {
                         console.log("user register : " + user);
-                        res.send(200, response);
+                        res.send(200, result);
                     }
                 })
             }

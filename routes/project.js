@@ -46,7 +46,7 @@ function init(app, User, Project, ProjectUser, randomString) {
             var project = new Project({
                 _id: projectId,
                 name: req.param('name'),
-                invite_link: "http://kafuuchino.one:3000/project/join/" + req.param('name')
+                invite_link: "http://localhost:3030/project/join/" + req.param('name')
             });
             var projectUser = new ProjectUser({
                 _id: req.user,

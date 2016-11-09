@@ -22,7 +22,7 @@ function init(app, User, randomString) {
     passport.use(new FacebookStrategy({
         clientID: "1264766676921309",
         clientSecret: "d64761ef5879fcd83e3551ad585980a6",
-        callbackURL: "http://localhost:3000/auth/facebook/callback",
+        callbackURL: "http://localhost:3030/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     }, function (accessToken, refreshToken, profile, done) {
         console.log(profile);

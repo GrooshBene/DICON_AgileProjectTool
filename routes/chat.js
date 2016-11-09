@@ -11,10 +11,25 @@ function init(app, User, Project, ProjectUser, randomString, sio) {
     });
 
     sio.on('connection', function(socket){
-        console.log('asdf');
-        socket.on('disconnect', function () {
-            console.log('asdfadsf');
-        })
+      var room_id;
+      console.log('user connect');
+      socket.on('message',(data) => {
+        console.log(data);
+        socket.emit('message', data);//나에게만
+        socket.in(room_id).emit('message', data); //나를 제외한 방에있는 모든사람에게
+      });
+
+      socket.on('change room', (data) => {
+        if(room_id)
+          socket.leave(room_id);
+        room_id = data;
+        socket.join(room_id);
+        console.log('now room : ', data);
+      });
+
+      socket.on('disconnect', ()=>{
+        console.log('user disconnect');
+      })
     })
 
     app.get('/chat/user', function (req, res) {
